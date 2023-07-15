@@ -3,9 +3,9 @@ from . import views
 
 urlpatterns = [
     path('', views.apiOverview, name='api_overview'),
-    path('task_list/', views.tasklist, name='task_list'),
-    path('task_detail/<str:pk>', views.taskdetail, name='task_detail'),    
-    path('task_create/', views.taskcreate, name='task_create'),    
-    path('task_update/<str:pk>', views.taskupdate, name='task_update'),    
-    path('task_delete/<str:pk>', views.taskdelete, name='task_delete'),    
+    path('car_list/', views.carlist, name='car_list'),
+    path('car_detail/<str:pk>', views.cardetail, name='car_detail'),    
+    path('car_create/', views.carcreate, name='car_create'),    
+    path('car_update/<str:pk>', views.carupdate, name='car_update'),    
+    path('car_delete/<str:pk>', views.cardelete, name='car_delete'),    
 ]

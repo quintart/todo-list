@@ -1,38 +1,38 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializers import TaskSerializer
-from .models import Task
+from .serializers import CarSerializer
+from .models import Car
 
 @api_view(['GET'])
 def apiOverview(request):
     api_urls = {
-        'List': '/task_list/',
-        'Detail View': '/task_detail/<str:pk>',
-        'Create': '/task_create/',
-        'Update': '/task_update/<str:pk>',
-        'Delete': '/task_delete/<str:pk>'
+        'List': '/car_list/',
+        'Detail View': '/car_detail/<str:pk>',
+        'Create': '/car_create/',
+        'Update': '/car_update/<str:pk>',
+        'Delete': '/car_delete/<str:pk>'
     }
 
     return Response(api_urls)
 
 @api_view(['GET'])
-def tasklist(request):
-    tasks = Task.objects.all()
-    serializer = TaskSerializer(tasks, many=True)
+def carlist(request):
+    cars = Car.objects.all()
+    serializer = CarSerializer(cars, many=True)
 
     return Response(serializer.data)
 
 @api_view(['GET'])
-def taskdetail(request, pk):
-    tasks = Task.objects.get(id=pk)
-    serializer = TaskSerializer(tasks, many=False)
+def cardetail(request, pk):
+    cars = Car.objects.get(id=pk)
+    serializer = CarSerializer(cars, many=False)
 
     return Response(serializer.data)
 
 @api_view(['POST'])
-def taskcreate(request):
-    serializer = TaskSerializer(data=request.data)
+def carcreate(request):
+    serializer = CarSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
@@ -40,9 +40,9 @@ def taskcreate(request):
     return Response('data no valid')
 
 @api_view(['POST'])
-def taskupdate(request, pk):
-    task = Task.objects.get(id=pk)
-    serializer = TaskSerializer(instance=task, data=request.data)
+def carupdate(request, pk):
+    car = Car.objects.get(id=pk)
+    serializer = CarSerializer(instance=car, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
@@ -50,7 +50,7 @@ def taskupdate(request, pk):
     return Response('data no valid')
 
 @api_view(['DELETE'])
-def taskdelete(request, pk):
-    task = Task.objects.get(id=pk)
-    task.delete()
+def cardelete(request, pk):
+    car = Car.objects.get(id=pk)
+    Car.delete()
     return Response('deleted')

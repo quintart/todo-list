@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from .models import Task
+from .models import Car
 
-class TaskSerializer(serializers.ModelSerializer):
+class CarSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Task
+        model = Car
         fields = '__all__'
 
 
